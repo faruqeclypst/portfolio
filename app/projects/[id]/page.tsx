@@ -2,43 +2,12 @@ import { FadeIn } from "@/components/atoms/fade-in";
 import { OptimizedImage } from "@/components/atoms/optimized-image";
 import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
-import { Badge } from "@/components/atoms/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/atoms/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/atoms/tooltip";
 import { siteConfig } from "@/constants";
-import { getProjectById } from "@/actions/projects";
-import { Project } from "@/types/api";
+import { fetchProject, MicroCMSProject } from "@/actions/projects";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  ExternalLink,
-  Github,
-  Calendar,
-  Globe,
-  Code2,
-  Layers,
-  Monitor,
-  Tag,
-  FileText,
-  GitBranch,
-  Eye,
-  Star,
-  Clock,
-  User,
-} from "lucide-react";
+import { ArrowLeft, ExternalLink, Calendar, Globe } from "lucide-react";
 
 // Add revalidation to cache API responses
 export const revalidate = 3600; // Revalidate every hour
@@ -54,22 +23,31 @@ export async function generateMetadata({
   const projectId = resolvedParams.id;
 
   try {
-    const project = await getProjectById(projectId);
+    const project = await fetchProject(projectId);
+
+    if (!project) {
+      return {
+        title: `Project Not Found | ${siteConfig.name}`,
+        description: "The requested project could not be found.",
+      };
+    }
+
+    // Strip HTML from description for meta
+    const plainDescription = project.description.replace(/<[^>]*>/g, "");
 
     return {
-      title: `${project.data.name} | Projects | ${siteConfig.name}`,
-      description: project.data.description,
+      title: `${project.title} | Projects | ${siteConfig.name}`,
+      description: plainDescription.substring(0, 160),
       openGraph: {
-        title: project.data.name,
-        description: project.data.description,
-        images: project.data.thumbnail?.url
+        title: project.title,
+        description: plainDescription.substring(0, 160),
+        images: project.thumbnail?.url
           ? [
               {
-                url: project.data.thumbnail.url,
-                width: project.data.thumbnail.width,
-                height: project.data.thumbnail.height,
-                alt:
-                  project.data.thumbnail.alternativeText || project.data.name,
+                url: project.thumbnail.url,
+                width: project.thumbnail.width,
+                height: project.thumbnail.height,
+                alt: project.title,
               },
             ]
           : [],
@@ -89,12 +67,9 @@ export default async function ProjectDetailPage({
   const resolvedParams = await params;
   const projectId = resolvedParams.id;
 
-  let project: Project;
+  const project = await fetchProject(projectId);
 
-  try {
-    const response = await getProjectById(projectId);
-    project = response.data;
-  } catch {
+  if (!project) {
     notFound();
   }
 
@@ -107,79 +82,82 @@ export default async function ProjectDetailPage({
   };
 
   return (
-    <section className="overflow-y-auto relative h-full">
+    <section className="overflow-y-auto relative h-full pb-10">
       <div className="container mx-auto px-6 py-8 max-w-4xl">
-        {/* Project Header - Sticky */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40 mb-8 pb-4 -mx-6 px-6">
-          <FadeIn>
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-              <div className="flex-1">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                  <h1 className="text-xl font-bold text-foreground">
-                    {project.name}
-                  </h1>
-                  {project.is_released && (
-                    <Badge variant="success" className="w-fit">
-                      <Globe className="w-3 h-3 mr-1" />
-                      Live
-                    </Badge>
-                  )}
-                </div>
+        {/* Back Navigation */}
+        <FadeIn>
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Projects
+          </Link>
+        </FadeIn>
 
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-1.5">
+        {/* Project Header */}
+        <FadeIn>
+          <div className="mb-8">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h1 className="text-2xl font-bold text-foreground mb-2">
+                  {project.title}
+                </h1>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    <span>Created {formatDate(project.createdAt)}</span>
+                    <span>Published {formatDate(project.publishedAt)}</span>
                   </div>
-                  {project.publishedAt && (
-                    <div className="flex items-center gap-1.5">
-                      <GitBranch className="w-4 h-4" />
-                      <span>Published {formatDate(project.publishedAt)}</span>
-                    </div>
-                  )}
+                  <div className="flex items-center gap-1">
+                    <Globe className="w-4 h-4" />
+                    <span className="text-green-600 dark:text-green-400">
+                      Live Project
+                    </span>
+                  </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                {project.url && (
-                  <Button asChild size={"sm"}>
+              <div className="flex items-center gap-2 flex-wrap">
+                {project.project_url && (
+                  <Button size="sm" asChild>
                     <a
-                      href={project.url}
+                      href={project.project_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
+                      className="flex items-center gap-1"
                     >
-                      <Eye className="w-4 h-4" />
-                      View Live
-                    </a>
-                  </Button>
-                )}
-                {project.source_code_url && (
-                  <Button variant="outline" asChild>
-                    <a
-                      href={project.source_code_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <Github className="w-4 h-4" />
-                      Source Code
+                      <ExternalLink className="w-4 h-4" />
+                      Visit Project
                     </a>
                   </Button>
                 )}
               </div>
             </div>
-          </FadeIn>
-        </div>
+
+            {/* Skills */}
+            {project.skills && project.skills.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-muted rounded-md text-xs font-medium text-muted-foreground"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </FadeIn>
 
         {/* Project Image */}
         {project.thumbnail && (
           <FadeIn>
-            <div className="mb-8 rounded-xl overflow-hidden border bg-muted/30 shadow-sm">
+            <div className="mb-8 rounded-lg overflow-hidden border bg-muted">
               <OptimizedImage
                 src={project.thumbnail.url}
-                alt={project.thumbnail.alternativeText || project.name}
+                alt={project.title}
                 width={project.thumbnail.width}
                 height={project.thumbnail.height}
                 className="w-full h-auto"
@@ -189,247 +167,101 @@ export default async function ProjectDetailPage({
           </FadeIn>
         )}
 
+        <Separator className="my-8" />
+
         {/* Project Description */}
         <FadeIn>
-          <div className="mb-10">
+          <div className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-xl font-bold text-foreground mb-6 pb-2 border-b border-border">
+              About This Project
+            </h2>
             <div
-              className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground leading-relaxed"
+              className="
+                text-foreground leading-7 
+                prose-headings:text-foreground prose-headings:font-semibold prose-headings:mb-4 prose-headings:mt-6
+                prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base
+                prose-p:mb-4 prose-p:text-muted-foreground prose-p:leading-7
+                prose-strong:text-foreground prose-strong:font-semibold
+                prose-em:text-foreground prose-em:italic
+                prose-ul:mb-4 prose-ul:pl-6 prose-li:mb-2 prose-li:text-muted-foreground
+                prose-ol:mb-4 prose-ol:pl-6 prose-li:marker:text-muted-foreground
+                prose-blockquote:border-l-4 prose-blockquote:border-border prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-muted-foreground prose-blockquote:bg-muted/30 prose-blockquote:py-2 prose-blockquote:rounded-r
+                prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:text-foreground
+                prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto
+                prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:underline prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:decoration-blue-500
+                prose-img:rounded-lg prose-img:border prose-img:border-border prose-img:shadow-sm
+                prose-hr:border-border prose-hr:my-8
+                prose-table:border-collapse prose-table:border prose-table:border-border prose-table:rounded-lg prose-table:overflow-hidden
+                prose-th:bg-muted prose-th:font-semibold prose-th:text-foreground prose-th:border prose-th:border-border prose-th:px-4 prose-th:py-2
+                prose-td:border prose-td:border-border prose-td:px-4 prose-td:py-2 prose-td:text-muted-foreground
+              "
               dangerouslySetInnerHTML={{ __html: project.description }}
             />
           </div>
         </FadeIn>
 
-        {/* Tech Stack Section */}
+        {/* Project Details */}
         <FadeIn>
-          <div className="mb-10">
-            <h2 className="text-lg font-semibold text-foreground mb-6">
-              Tech Stack & Details
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Technologies */}
-              {project.technologies && project.technologies.length > 0 && (
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                    <Code2 className="w-4 h-4" />
-                    Technologies
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, index) => (
-                      <Badge key={index} variant="info" className="text-xs">
-                        {tech.name}
-                      </Badge>
-                    ))}
-                  </div>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <h3 className="text-base font-semibold text-foreground">
+                Project Details
+              </h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Status:</span>
+                  <span className="text-green-600 dark:text-green-400">
+                    Published
+                  </span>
                 </div>
-              )}
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Created:</span>
+                  <span className="text-foreground">
+                    {formatDate(project.createdAt)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Published:</span>
+                  <span className="text-foreground">
+                    {formatDate(project.publishedAt)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Last Updated:</span>
+                  <span className="text-foreground">
+                    {formatDate(project.updatedAt)}
+                  </span>
+                </div>
+              </div>
+            </div>
 
-              {/* Categories */}
-              {project.categories && project.categories.length > 0 && (
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                    <Layers className="w-4 h-4" />
-                    Categories
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.categories.map((category, index) => (
-                      <Badge key={index} variant="success" className="text-xs">
-                        {category.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Platforms */}
-              {project.platforms && project.platforms.length > 0 && (
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                    <Monitor className="w-4 h-4" />
-                    Platforms
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.platforms.map((platform, index) => (
-                      <Badge key={index} variant="purple" className="text-xs">
-                        {platform.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Types */}
-              {project.types && project.types.length > 0 && (
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                    <Tag className="w-4 h-4" />
-                    Project Types
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.types.map((type, index) => (
-                      <Badge key={index} variant="orange" className="text-xs">
-                        {type.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
+            <div className="space-y-4">
+              <h3 className="text-base font-semibold text-foreground">Links</h3>
+              <div className="space-y-2">
+                {project.project_url && (
+                  <a
+                    href={project.project_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Visit Project
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </FadeIn>
 
-        {/* Project Information */}
+        {/* Navigation to Other Projects */}
+        <Separator className="my-8" />
         <FadeIn>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-            {/* Project Details Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <FileText className="w-4 h-4" />
-                  Project Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground flex items-center gap-2">
-                    <User className="w-3.5 h-3.5" />
-                    Status
-                  </span>
-                  <Badge variant={project.is_released ? "success" : "warning"}>
-                    {project.is_released ? "Released" : "In Development"}
-                  </Badge>
-                </div>
-                <Separator />
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Calendar className="w-3.5 h-3.5" />
-                    Created
-                  </span>
-                  <span className="text-sm text-foreground">
-                    {formatDate(project.createdAt)}
-                  </span>
-                </div>
-                {project.publishedAt && (
-                  <>
-                    <Separator />
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground flex items-center gap-2">
-                        <GitBranch className="w-3.5 h-3.5" />
-                        Published
-                      </span>
-                      <span className="text-sm text-foreground">
-                        {formatDate(project.publishedAt)}
-                      </span>
-                    </div>
-                  </>
-                )}
-                <Separator />
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5" />
-                    Last Updated
-                  </span>
-                  <span className="text-sm text-foreground">
-                    {formatDate(project.updatedAt)}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Quick Access Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <ExternalLink className="w-4 h-4" />
-                  Quick Access
-                </CardTitle>
-                <CardDescription>
-                  Direct links to project resources
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {project.url && (
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors group"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                              <Eye className="w-5 h-5 text-primary" />
-                            </div>
-                            <div>
-                              <div className="text-sm font-medium text-foreground">
-                                Live Demo
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                View the live project
-                              </div>
-                            </div>
-                          </div>
-                          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                        </a>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>View the live project</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                )}
-                {project.source_code_url && (
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <a
-                          href={project.source_code_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors group"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                              <Github className="w-5 h-5 text-foreground" />
-                            </div>
-                            <div>
-                              <div className="text-sm font-medium text-foreground">
-                                Source Code
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                View on GitHub
-                              </div>
-                            </div>
-                          </div>
-                          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                        </a>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>View source code on GitHub</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                )}
-                {!project.url && !project.source_code_url && (
-                  <div className="p-4 rounded-lg border border-dashed text-center">
-                    <div className="text-sm text-muted-foreground">
-                      No external links available
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </FadeIn>
-
-        {/* Navigation */}
-        <FadeIn>
-          <div className="flex justify-center pt-8 border-t">
+          <div className="text-center">
             <Link href="/projects">
-              <Button variant="outline" className="flex items-center gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Projects
+              <Button variant="outline">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                View All Projects
               </Button>
             </Link>
           </div>

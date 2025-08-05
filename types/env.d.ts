@@ -13,6 +13,10 @@ declare global {
 
       //   Optional: Additional Analytics
       NEXT_PUBLIC_VERCEL_ANALYTICS_ID?: string;
+
+      // Wakatime
+      MICROCMS_SERVICE_DOMAIN: string;
+      MICROCMS_API_KEY: string;
     }
   }
 }
