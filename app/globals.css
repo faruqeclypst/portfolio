@@ -152,6 +152,11 @@
     @apply bg-gray-400 text-white;
   }
 
+  /* globals.css */
+  pre[data-theme] {
+    background: none !important;
+  }
+
   code {
     counter-reset: line;
     counter-increment: line 0;
