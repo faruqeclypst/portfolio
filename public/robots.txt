@@ -7,7 +7,7 @@ Disallow: /private/
 Disallow: /_next/
 
 # Host
-Host: https://lazlanrafar.com
+Host: https://alfaruqasri.my.id
 
 # Sitemaps
-Sitemap: https://lazlanrafar.com/sitemap.xml
+Sitemap: https://alfaruqasri.my.id/sitemap.xml

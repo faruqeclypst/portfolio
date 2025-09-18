@@ -42,10 +42,10 @@ export default function AppHeader({
         </button>
       </div>
       <p className="not-sr-only mx-auto hidden text-sm font-semibold select-none lg:block">
-        Qwerty.
+        Alfaruq Asri, S.Pd.
       </p>
       <p className="not-sr-only mx-auto block text-sm font-semibold select-none lg:hidden">
-        L Azlan Rafar
+        Alfaruq Asri, S.Pd.
       </p>
 
       <div>

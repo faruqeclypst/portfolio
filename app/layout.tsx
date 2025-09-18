@@ -192,7 +192,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="L Azlan Rafar" />
+        <meta name="apple-mobile-web-app-title" content="Alfaruq Asri, S.Pd." />
         <link
           rel="preload"
           href="/assets/android-chrome-192x192.png"

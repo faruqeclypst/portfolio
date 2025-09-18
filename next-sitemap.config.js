@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://lazlanrafar.com",
+  siteUrl: process.env.SITE_URL || "https://alfaruqasri.my.id",
   generateRobotsTxt: true,
   changefreq: "weekly",
   priority: 0.7,
@@ -55,6 +55,6 @@ module.exports = {
         disallow: ["/api/", "/admin/", "/private/", "/_next/"],
       },
     ],
-    additionalSitemaps: ["https://lazlanrafar.com/sitemap.xml"],
+    additionalSitemaps: ["https://alfaruqasri.my.id/sitemap.xml"],
   },
 };

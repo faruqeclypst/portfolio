@@ -1,7 +1,7 @@
 {
-  "name": "L Azlan Rafar - Portfolio",
-  "short_name": "L Azlan Rafar",
-  "description": "Software Developer Portfolio - L Azlan Rafar",
+  "name": "Alfaruq Asri, S.Pd. - Portfolio",
+  "short_name": "Alfaruq Asri, S.Pd.",
+  "description": "Software Developer Portfolio - Alfaruq Asri, S.Pd.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -43,5 +43,5 @@
   "lang": "en-US",
   "dir": "ltr",
   "scope": "/",
-  "id": "lazlanrafar-portfolio"
+  "id": "alfaruqasri-portfolio"
 }
