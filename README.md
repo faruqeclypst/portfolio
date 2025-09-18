@@ -1,10 +1,10 @@
-# L Azlan Rafar - Portfolio
+# Alfaruq Asri - Portfolio
 
-[![wakatime](https://wakatime.com/badge/github/lazlanrafar/portfolio.svg)](https://wakatime.com/badge/github/lazlanrafar/portfolio)
+[![wakatime](https://wakatime.com/badge/github/alfaruqasri/portfolio.svg)](https://wakatime.com/badge/github/alfaruqasri/portfolio)
 
 A modern, high-performance portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. Optimized for performance, SEO, and accessibility.
 
-🌐 **Live Demo**: [https://lazlanrafar.com](https://lazlanrafar.com)
+🌐 **Live Demo**: [https://alfaruqasri.my.id](https://alfaruqasri.my.id)
 
 ## ✨ Features
 
@@ -51,7 +51,7 @@ A modern, high-performance portfolio website built with Next.js 14, TypeScript, 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/lazlanrafar/portfolio.git
+   git clone https://github.com/faruqeclypst/portfolio.git
    cd portfolio
    ```
 
@@ -163,7 +163,7 @@ A modern, high-performance portfolio website built with Next.js 14, TypeScript, 
 ### Environment Variables
 
 ```bash
-NEXT_PUBLIC_BASE_URL=https://lazlanrafar.com
+NEXT_PUBLIC_BASE_URL=https://alfaruqasri.my.id
 NEXT_PUBLIC_GA_ID=your-google-analytics-id
 ```
 
@@ -237,10 +237,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Website**: [lazlanrafar.com](https://lazlanrafar.com)
-- **Email**: [lazlanrafar@gmail.com](mailto:lazlanrafar@gmail.com)
-- **LinkedIn**: [linkedin.com/in/lazlanrafar](https://linkedin.com/in/lazlanrafar)
-- **GitHub**: [github.com/lazlanrafar](https://github.com/lazlanrafar)
+- **Website**: [alfaruqasri.my.id](https://alfaruqasri.my.id)
+- **Email**: [alfaruqasri98@gmail.com](mailto:alfaruqasri98@gmail.com)
+- **LinkedIn**: [linkedin.com/in/alfaruqasri](https://linkedin.com/in/alfaruqasri)
+- **GitHub**: [github.com/faruqeclypst](https://github.com/faruqeclypst)
 
 ---
 

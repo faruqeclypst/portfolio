@@ -1,16 +1,16 @@
 export const siteConfig = {
-  author: "L Azlan Rafar",
-  name: "L Azlan Rafar",
-  subtitle: "L Azlan Rafar's personal website",
+  author: "Alfaruq Asri",
+  name: "Alfaruq Asri",
+  subtitle: "Alfaruq Asri's personal website",
   description:
     "I'm a Software Developer Based in Indonesia. I describe myself as a passionate developer who loves coding, open-source, and the web platform ❤️",
-  username: "lazlanrafar",
-  url: "https://lazlanrafar.com",
-  repository: "https://github.com/lazlanrafar/portfolio",
+  username: "alfaruqasri",
+  url: "https://alfaruqasri.my.id",
+  repository: "https://github.com/faruqeclypst/portfolio",
   links: {
-    github: "https://github.com/lazlanrafar",
-    linkedin: "https://www.linkedin.com/in/lazlanrafar",
-    instagram: "https://www.instagram.com/lazlanrafar",
-    email: "mailto:lazlanrafar@gmail.com",
+    github: "https://github.com/faruqeclypst",
+    linkedin: "https://www.linkedin.com/in/alfaruqasri",
+    instagram: "https://www.instagram.com/alfaruqasri",
+    email: "mailto:alfaruqasri@sman-modalbangsa.sch.id",
   },
 };

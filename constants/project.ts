@@ -22,7 +22,7 @@ export const projects = [
     name: "Moonlight - Parralax Website",
     description: "Moonlight is a parralax website that is created using Vue.js and Tailwind.",
     project_url: "https://moonllight.vercel.app",
-    source_code_url: "https://github.com/lazlanrafar/moonllight",
+    source_code_url: "https://github.com/faruqeclypst/moonllight",
     creator_email: "lazlanrafar@gmail.com",
   },
   {
@@ -30,7 +30,7 @@ export const projects = [
     name: "Ocean Paradise - Backround Video Website",
     description: "Ocean Paradise is a background video website that is created using Vue.js.",
     project_url: "https://oceanparadise.vercel.app",
-    source_code_url: "https://github.com/lazlanrafar/ocean-paradise",
+    source_code_url: "https://github.com/faruqeclypst/ocean-paradise",
     creator_email: "lazlanrafar@gmail.com",
   },
   {
@@ -38,7 +38,7 @@ export const projects = [
     name: "Airplane - Airplane Ticket App",
     description: "Airplane is an airplane ticket app that is created using Flutter.",
     project_url: "",
-    source_code_url: "https://github.com/lazlanrafar/airplane",
+    source_code_url: "https://github.com/faruqeclypst/airplane",
     creator_email: "lazlanrafar@gmail.com",
   },
   {
@@ -46,7 +46,7 @@ export const projects = [
     name: "Resto - Restaurant App",
     description: "Resto is a restaurant app that is created using HTML, CSS, and JavaScript.",
     project_url: "https://resto-restaurant.vercel.app",
-    source_code_url: "https://github.com/lazlanrafar/resto-restaurant",
+    source_code_url: "https://github.com/faruqeclypst/resto-restaurant",
     creator_email: "lazlanrafar@gmail.com",
   },
   {
@@ -54,7 +54,7 @@ export const projects = [
     name: "StoreGG - Top Up Game Website",
     description: "StoreGG is a top up game website that is created using Next.js and Bootstrap.",
     project_url: "https://storegg-sand.vercel.app",
-    source_code_url: "https://github.com/lazlanrafar/storegg-fe",
+    source_code_url: "https://github.com/faruqeclypst/storegg-fe",
     creator_email: "lazlanrafar@gmail.com",
   },
   {
@@ -62,7 +62,7 @@ export const projects = [
     name: "Foodyar - Cooking Course Website",
     description: "Foodyar is a cooking course website that is created using HTML, Bootstrap, and JavaScript.",
     project_url: "https://foodyar-eight.vercel.app",
-    source_code_url: "https://github.com/lazlanrafar/foodyar",
+    source_code_url: "https://github.com/faruqeclypst/foodyar",
     creator_email: "lazlanrafar@gmail.com",
   },
   {
@@ -70,7 +70,7 @@ export const projects = [
     name: "Hoobank - Master modern web development",
     description: "Hoobank is a modern web development project that is created using React.js",
     project_url: "https://hoobank-web.vercel.app",
-    source_code_url: "https://github.com/lazlanrafar/hoobank-web",
+    source_code_url: "https://github.com/faruqeclypst/hoobank-web",
     creator_email: "lazlanrafar@gmail.com",
   },
   {

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 export const AnimatedName = () => {
-  const [text, setText] = useState("LAZLANRAFAR");
+  const [text, setText] = useState("ALFARUQASRI");
   const [intervalId] = useState<number | null>(null);
   const ref = useRef<HTMLHeadingElement | null>(null);
 

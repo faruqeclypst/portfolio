@@ -4,7 +4,7 @@ export default function HomeAboutMe() {
   return (
     <section className="h-full p-10 flex flex-col justify-center">
       <p className="text-[max(21px,1.5vw)] mb-10">
-        I’m L Azlan Rafar, I work as a full stack developer specialized in the
+        I’m Alfaruq Asrim S.Pd, I work as a full stack developer specialized in the
         conception of custom and unique website. I love designing interfaces
         with a beautiful and strong user experience.
       </p>

@@ -52,14 +52,15 @@ export const metadata: Metadata = {
     "Software Developer",
     "Frontend Developer",
     "React Developer",
+    "Teacher",
     "Next.js Developer",
     "TypeScript Developer",
     "Web Developer",
     "JavaScript Developer",
     "Indonesia Developer",
     "Portfolio",
-    "L Azlan Rafar",
-    "lazlanrafar",
+    "Alfaruq Asri",
+    "alfaruqasri",
   ],
   authors: [
     {
@@ -96,7 +97,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${siteConfig.url}/opengraph-image.png`],
-    creator: "@lazlanrafar",
+    creator: "@alfaruqasri",
   },
 
   // Robots

@@ -24,8 +24,9 @@ export const metadata: Metadata = {
     "Frontend Developer",
     "Web Developer",
     "Portfolio",
-    "L Azlan Rafar",
-    "lazlanrafar",
+    "Teacher",
+    "Alfaruq Asri",
+    "alfaruqasri",
     "Indonesia Developer",
   ],
   openGraph: {
