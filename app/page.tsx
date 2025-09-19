@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteConfig.url}/opengraph-image.png`,
+        url: `${siteConfig.url}/opengraph-image.webp`,
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} - Software Developer Portfolio`,
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} - Software Developer`,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/opengraph-image.png`],
+    images: [`${siteConfig.url}/opengraph-image.webp`],
   },
   alternates: {
     canonical: siteConfig.url,

@@ -6,7 +6,7 @@ export const projects = [
       "Estatix is an all-in-one application that simplifies the process of finding and booking your dream home while conveniently managing your monthly bills. With Estatix, you can effortlessly browse, book, and make payments for your preferred housing options, making it the perfect solution for individuals and families looking for their next place to call home.",
     project_url: "",
     source_code_url: "",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: null,
@@ -15,7 +15,7 @@ export const projects = [
       "This Project optimizing the distribution process of SK and Surat Tugas at Politeknik Negeri Batam for improved efficiency and timely communication.",
     project_url: "",
     source_code_url: "",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: "https://gzizpuccroyjhwkfyyxd.supabase.co/storage/v1/object/public/media/wallpaperflare.com_wallpaper (1).jpg",
@@ -23,7 +23,7 @@ export const projects = [
     description: "Moonlight is a parralax website that is created using Vue.js and Tailwind.",
     project_url: "https://moonllight.vercel.app",
     source_code_url: "https://github.com/faruqeclypst/moonllight",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: null,
@@ -31,7 +31,7 @@ export const projects = [
     description: "Ocean Paradise is a background video website that is created using Vue.js.",
     project_url: "https://oceanparadise.vercel.app",
     source_code_url: "https://github.com/faruqeclypst/ocean-paradise",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: null,
@@ -39,7 +39,7 @@ export const projects = [
     description: "Airplane is an airplane ticket app that is created using Flutter.",
     project_url: "",
     source_code_url: "https://github.com/faruqeclypst/airplane",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: null,
@@ -47,7 +47,7 @@ export const projects = [
     description: "Resto is a restaurant app that is created using HTML, CSS, and JavaScript.",
     project_url: "https://resto-restaurant.vercel.app",
     source_code_url: "https://github.com/faruqeclypst/resto-restaurant",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: null,
@@ -55,7 +55,7 @@ export const projects = [
     description: "StoreGG is a top up game website that is created using Next.js and Bootstrap.",
     project_url: "https://storegg-sand.vercel.app",
     source_code_url: "https://github.com/faruqeclypst/storegg-fe",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: null,
@@ -63,7 +63,7 @@ export const projects = [
     description: "Foodyar is a cooking course website that is created using HTML, Bootstrap, and JavaScript.",
     project_url: "https://foodyar-eight.vercel.app",
     source_code_url: "https://github.com/faruqeclypst/foodyar",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: null,
@@ -71,7 +71,7 @@ export const projects = [
     description: "Hoobank is a modern web development project that is created using React.js",
     project_url: "https://hoobank-web.vercel.app",
     source_code_url: "https://github.com/faruqeclypst/hoobank-web",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: "https://gzizpuccroyjhwkfyyxd.supabase.co/storage/v1/object/public/media/Jurnal Ilmu Administrasi Public - UNISRI.png",
@@ -80,7 +80,7 @@ export const projects = [
       "This is my first project to make UI together with the team using figma, this is a website that contains personal scientific journals from UNISRI University.",
     project_url: "",
     source_code_url: "",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: "https://gzizpuccroyjhwkfyyxd.supabase.co/storage/v1/object/public/media/Lajupay - Tax payment app.png",
@@ -89,7 +89,7 @@ export const projects = [
       "Lajupay is your trusted companion for seamless tax payment. Say goodbye to the complexity of managing your taxes and hello to an efficient, user-friendly experience. Lajupay simplifies the process, allowing you to pay your taxes, file returns, and stay on top of your financial obligations with ease.",
     project_url: "",
     source_code_url: "",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
   {
     thumbnail: "https://gzizpuccroyjhwkfyyxd.supabase.co/storage/v1/object/public/media/Silaju - Motor Vehicle Sales Report System.jpeg",
@@ -98,6 +98,6 @@ export const projects = [
       "Silaju is your comprehensive solution for managing and simplifying motor vehicle sales reporting. Designed for both dealerships and regulatory authorities, Silaju streamlines the process of reporting vehicle sales, ensuring accuracy, transparency, and compliance with regulations.",
     project_url: "",
     source_code_url: "",
-    creator_email: "lazlanrafar@gmail.com",
+    creator_email: "alfaruqasri98@gmail.com",
   },
 ];

@@ -8,13 +8,13 @@ import type {
 } from "@/types/activity";
 
 // Wakatime public share URLs
-const baseUrl = "https://wakatime.com/share/@lazlanrafar";
+const baseUrl = "https://wakatime.com/share/@alfaruqasri";
 
 export const WAKATIME = {
-  codingActivity: baseUrl + "/536b5cda-34ff-4aad-8a2c-70d050806915.json",
-  codingLanguages: baseUrl + "/c5bdb772-6066-4334-bfe9-a551bb5a61e0.json",
-  codeEditor: baseUrl + "/38c7408d-c558-4e8f-96ad-9cdb052082ee.json",
-  operatingSystems: baseUrl + "/c7d5cffa-f1d9-461e-8fae-3560ad57a97a.json",
+  codingActivity: baseUrl + "/b52ef430-50bf-4e47-afc3-dab755aa675d.json",
+  codingLanguages: baseUrl + "/a4b0e00c-bd0e-4adb-9cc8-46856ddd2d0b.json",
+  codeEditor: baseUrl + "/d317f0d3-4a12-478b-864f-046e8eacd085.json",
+  operatingSystems: baseUrl + "/f18be6dd-ae25-429e-a5df-b5a674986fda.json",
 };
 
 /**
