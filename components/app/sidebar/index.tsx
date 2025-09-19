@@ -49,8 +49,18 @@ export default function AppSidebar() {
     <>
       <nav className="md:h-full md:max-w-[65px] w-full flex md:flex-col items-center justify-between bg-background border-b md:border-b-0 border-r py-3 md:py-4 px-5 md:px-0 md:overflow-y-auto">
         <div className="md:min-h-[60px] flex items-center justify-center pt-2">
+          {/* Mobile Logo - Always visible on mobile */}
+          <div className="md:hidden">
+            <Link href="/">
+              <h1 className="select-none text-xl font-bold text-foreground hover:text-primary hover:scale-110 transition-all duration-300">
+                Aa.
+              </h1>
+            </Link>
+          </div>
+          
+          {/* Desktop Logo - Hidden on mobile */}
           <div 
-            className="relative w-12 h-12 group"
+            className="relative w-10 h-10 group hidden md:block"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -84,7 +94,7 @@ export default function AppSidebar() {
               }`}
             >
               <h1 className="select-none text-xl font-bold text-foreground group-hover:text-primary group-hover:scale-110 transition-all duration-300">
-                AA.
+                Aa.
               </h1>
             </Link>
           </div>
