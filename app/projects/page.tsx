@@ -12,8 +12,8 @@ import { Separator } from "@/components/atoms/separator";
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export const metadata: Metadata = {
-  title: "Blogs | " + siteConfig.name,
-  description: "A collection of blogs that I have written.",
+  title: "Projects | " + siteConfig.name,
+  description: "A collection of projects that I have written.",
 };
 
 interface ProjectsPageProps {
@@ -35,9 +35,9 @@ export default async function ProjectsPage({
       <div className="container mx-auto px-6 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-base font-bold text-foreground mb-1">Blogs</h1>
+          <h1 className="text-base font-bold text-foreground mb-1">Projects</h1>
           <p className="text-muted-foreground text-xs">
-           A collection of {projectsData.totalCount} blogs that I have written.
+           A collection of {projectsData.totalCount} projects that I have written.
           </p>
         </div>
 
@@ -74,10 +74,10 @@ export default async function ProjectsPage({
           <div className="flex flex-col items-center justify-center py-16">
             <div className="text-center">
               <h3 className="text-lg font-medium text-foreground mb-2">
-                No Blogs found
+                No Projects found
               </h3>
               <p className="text-muted-foreground">
-                Unable to fetch blogs at the moment. Please try again later.
+                Unable to fetch projects at the moment. Please try again later.
               </p>
             </div>
           </div>

@@ -57,7 +57,7 @@ export default function MicroCMSProjectCard({
           {/* Status Badge */}
           <div className="absolute top-3 left-3">
             <span className="px-2 py-1 text-xs font-medium bg-primary/90 text-primary-foreground rounded-full backdrop-blur-sm">
-              Blogs
+            Projects
             </span>
           </div>
         </div>
