@@ -98,28 +98,42 @@ export default async function ProjectDetailPage({
         {/* Project Header */}
         <FadeIn>
           <div className="mb-8">
-            <div className="flex items-start justify-between mb-4">
-              <div>
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+              <div className="flex-1">
                 <h1 className="text-2xl font-bold text-foreground mb-2">
                   {project.title}
                 </h1>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                   <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>Published {formatDate(project.publishedAt)}</span>
+                    {/* <Calendar className="w-4 h-4" /> */}
+                    <span>{formatDate(project.publishedAt)}</span>
                   </div>
-                  <div className="flex items-center gap-1">
+                  {/* <div className="flex items-center gap-1">
                     <Globe className="w-4 h-4" />
                     <span className="text-green-600 dark:text-green-400">
                       Live Project
                     </span>
-                  </div>
+                  </div> */}
                 </div>
+
+                {/* Skills */}
+                {project.skills && project.skills.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-2 md:mb-0">
+                    {project.skills.map((skill, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-muted rounded-md text-xs font-medium text-muted-foreground"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex items-center gap-2 flex-wrap">
-                {project.project_url && (
+              {/* Action Buttons (moves below on small screens) */}
+              {project.project_url && (
+                <div className="flex items-center gap-2 flex-wrap md:ml-4">
                   <Button size="sm" asChild>
                     <a
                       href={project.project_url}
@@ -128,26 +142,12 @@ export default async function ProjectDetailPage({
                       className="flex items-center gap-1"
                     >
                       <ExternalLink className="w-4 h-4" />
-                      Visit Project
+                      Source / Project / Learning
                     </a>
                   </Button>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-
-            {/* Skills */}
-            {project.skills && project.skills.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="px-2 py-1 bg-muted rounded-md text-xs font-medium text-muted-foreground"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
         </FadeIn>
 
@@ -173,7 +173,7 @@ export default async function ProjectDetailPage({
         <FadeIn>
           <div className="prose prose-gray dark:prose-invert max-w-none">
             <h2 className="text-xl font-bold text-foreground mb-6 pb-2 border-b border-border">
-              About This Project
+              About this
             </h2>
             <div
               className="
@@ -205,7 +205,7 @@ export default async function ProjectDetailPage({
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <h3 className="text-base font-semibold text-foreground">
-                Project Details
+                Details Post
               </h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -246,7 +246,7 @@ export default async function ProjectDetailPage({
                     className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    Visit Project
+                    Source / Project / Learning
                   </a>
                 )}
               </div>

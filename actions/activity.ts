@@ -104,8 +104,13 @@ export async function getActivityMetrics(
         getOperatingSystems(params),
       ]);
 
-    // Extract the most recent total coding time
-    const latestActivity = activityData.data[0];
+       // Extract the most recent total coding time
+    // Ensure we pick the latest date (some feeds are oldest→newest)
+    const sortedByDateAsc = [...activityData.data].sort(
+      (a, b) =>
+        new Date(a.range.date).getTime() - new Date(b.range.date).getTime()
+    );
+    const latestActivity = sortedByDateAsc[sortedByDateAsc.length - 1];
 
     return {
       totalCodingTime: latestActivity?.grandTotal || {
