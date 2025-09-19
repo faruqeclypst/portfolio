@@ -65,7 +65,7 @@ export default function AppSidebar() {
             >
               <div className="w-full h-full overflow-hidden rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                  <OptimizedImage
-                   src="/avatar.png"
+                   src="/avatar.jpeg"
                    alt="Profile Photo"
                    width={150}
                    height={150}
