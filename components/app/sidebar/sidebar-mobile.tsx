@@ -22,7 +22,7 @@ export default function AppSidebarMobile({
   return (
     <AnimatePresence>
       {isOpen && (
-        <FadeIn className="absolute z-50 left-0 top-[60px] w-full h-[calc(100%-57px-27px)] bg-background p-5 overflow-y-auto">
+        <FadeIn className="fixed z-[100] left-0 right-0 top-[60px] bottom-[27px] bg-background p-5 overflow-y-auto">
           {NAVIGATION.map((item) => (
             <Fragment key={item.title}>
               {item.children ? (

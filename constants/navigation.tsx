@@ -63,6 +63,24 @@ export const NAVIGATION: {
     path: "/activity",
     content: "_Activity",
     icon: Icons.chart,
+    children: [
+      {
+        name: "Languages",
+        path: "/activity/languages",
+      },
+      {
+        name: "Weekly Activity",
+        path: "/activity/weekly-activity",
+      },
+      {
+        name: "Code Editor",
+        path: "/activity/code-editor",
+      },
+      {
+        name: "Operating Systems",
+        path: "/activity/operating-systems",
+      },
+    ],
   },
   {
     title: "Contact",
