@@ -35,22 +35,35 @@ export async function generateMetadata({
     // Strip HTML from description for meta
     const plainDescription = project.description.replace(/<[^>]*>/g, "");
 
+    // Build OpenGraph images safely
+    const ogImages: { url: string; width?: number; height?: number; alt?: string }[] = [];
+    if (project.thumbnail?.url) {
+      ogImages.push({
+        url: project.thumbnail.url,
+        width: project.thumbnail.width,
+        height: project.thumbnail.height,
+        alt: project.title,
+      });
+    }
+    if (project.images && project.images.length > 0) {
+      const first = project.images[0];
+      if (first?.url) {
+        ogImages.push({
+          url: first.url,
+          width: first.width,
+          height: first.height,
+          alt: project.title,
+        });
+      }
+    }
+
     return {
       title: `${project.title} | Projects | ${siteConfig.name}`,
       description: plainDescription.substring(0, 160),
       openGraph: {
         title: project.title,
         description: plainDescription.substring(0, 160),
-        images: project.thumbnail?.url
-          ? [
-              {
-                url: project.thumbnail.url,
-                width: project.thumbnail.width,
-                height: project.thumbnail.height,
-                alt: project.title,
-              },
-            ]
-          : [],
+        images: ogImages,
       },
     };
   } catch {
@@ -167,14 +180,12 @@ export default async function ProjectDetailPage({
           </FadeIn>
         )}
 
-        <Separator className="my-8" />
-
         {/* Project Description */}
         <FadeIn>
           <div className="prose prose-gray dark:prose-invert max-w-none">
-            <h2 className="text-xl font-bold text-foreground mb-6 pb-2 border-b border-border">
-              About this
-            </h2>
+             <h2 className="text-xl font-bold text-foreground mb-6 pb-2 border-b border-border">
+               {project.title}
+             </h2>
             <div
               className="
                 text-foreground leading-7 
@@ -189,16 +200,58 @@ export default async function ProjectDetailPage({
                 prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:text-foreground
                 prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto
                 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:underline prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:decoration-blue-500
-                prose-img:rounded-lg prose-img:border prose-img:border-border prose-img:shadow-sm
-                prose-hr:border-border prose-hr:my-8
-                prose-table:border-collapse prose-table:border prose-table:border-border prose-table:rounded-lg prose-table:overflow-hidden
-                prose-th:bg-muted prose-th:font-semibold prose-th:text-foreground prose-th:border prose-th:border-border prose-th:px-4 prose-th:py-2
-                prose-td:border prose-td:border-border prose-td:px-4 prose-td:py-2 prose-td:text-muted-foreground
+                 prose-img:rounded-lg prose-img:border prose-img:border-border prose-img:shadow-md prose-img:bg-muted/20
+                 prose-img:max-w-[280px] prose-img:sm:max-w-[320px] prose-img:md:max-w-[400px] prose-img:lg:max-w-[480px]
+                 prose-img:h-auto prose-img:w-auto prose-img:max-h-[200px] prose-img:sm:max-h-[250px] prose-img:md:max-h-[300px]
+                 prose-img:object-contain prose-img:mx-auto prose-img:my-4 prose-img:block
+                 prose-img:transition-all prose-img:duration-300 prose-img:hover:shadow-lg prose-img:hover:scale-[1.02]
+                 prose-figure:my-4 prose-figure:mx-auto prose-figure:max-w-[280px] prose-figure:sm:max-w-[320px] prose-figure:md:max-w-[400px] prose-figure:lg:max-w-[480px]
+                 prose-figcaption:text-center prose-figcaption:text-xs prose-figcaption:text-muted-foreground prose-figcaption:mt-2 prose-figcaption:italic
+                 prose-hr:border-border prose-hr:my-8
+                 prose-table:border-collapse prose-table:border prose-table:border-border prose-table:rounded-lg prose-table:overflow-hidden
+                 prose-th:bg-muted prose-th:font-semibold prose-th:text-foreground prose-th:border prose-th:border-border prose-th:px-4 prose-th:py-2
+                 prose-td:border prose-td:border-border prose-td:px-4 prose-td:py-2 prose-td:text-muted-foreground
+                 [&_p:has(img)]:flex [&_p:has(img)]:flex-wrap [&_p:has(img)]:gap-3 [&_p:has(img)]:justify-center [&_p:has(img)]:items-start
+                 [&_p:has(img)_img]:!mx-0 [&_p:has(img)_img]:!my-0 [&_p:has(img)_img]:!max-w-[calc(50%-0.375rem)] [&_p:has(img)_img]:!flex-shrink-0
+                 [&_p:has(img):has(>_img:only-child)]:!block [&_p:has(img):has(>_img:only-child)_img]:!max-w-[280px] [&_p:has(img):has(>_img:only-child)_img]:!sm:max-w-[320px] [&_p:has(img):has(>_img:only-child)_img]:!md:max-w-[400px] [&_p:has(img):has(>_img:only-child)_img]:!lg:max-w-[480px] [&_p:has(img):has(>_img:only-child)_img]:!mx-auto
+                 [&_p:has(img):has(>_img:nth-child(2))]:!flex [&_p:has(img):has(>_img:nth-child(2))]:!flex-wrap [&_p:has(img):has(>_img:nth-child(2))]:!gap-3
+                 [&_p:has(img):has(>_img:nth-child(2))_img]:!max-w-[calc(50%-0.375rem)] [&_p:has(img):has(>_img:nth-child(2))_img]:!flex-shrink-0
+                 [&_p:has(img):has(>_img:nth-child(3))]:!grid [&_p:has(img):has(>_img:nth-child(3))]:!grid-cols-1 [&_p:has(img):has(>_img:nth-child(3))]:!sm:grid-cols-2 [&_p:has(img):has(>_img:nth-child(3))]:!md:grid-cols-3
+                 [&_p:has(img):has(>_img:nth-child(3))_img]:!max-w-full [&_p:has(img):has(>_img:nth-child(3))_img]:!w-full
               "
               dangerouslySetInnerHTML={{ __html: project.description }}
             />
           </div>
         </FadeIn>
+
+        <Separator className="my-8" />
+
+        {/* Extra Images Gallery */}
+        {project.images && project.images.length > 0 && (
+          <FadeIn>
+            <div className="mt-8 mb-8">
+              <h3 className="text-base font-semibold text-foreground mb-4">
+                Gallery
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {project.images.map((img, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-lg overflow-hidden border bg-muted"
+                  >
+                     <OptimizedImage
+                       src={img.url}
+                       alt={`${project.title} - image ${idx + 1}`}
+                       width={img.width}
+                       height={img.height}
+                       className="w-full h-auto object-cover"
+                     />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        )}
 
         {/* Project Details */}
         <FadeIn>

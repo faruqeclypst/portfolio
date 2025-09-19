@@ -42,14 +42,8 @@ function HomeWelcome() {
               <div className="relative overflow-hidden">
                 <span className="block text-[clamp(0.2rem,1.5vw,0.8rem)] leading-[0.9] tracking-[-0.05em] whitespace-pre font-mono text-foreground">
                   {`
-                                                     
- ▄▄▄▄▄▄                            
- █       ▄▄▄    ▄ ▄▄  ▄   ▄   ▄▄▄▄ 
- █▄▄▄▄▄ ▀   █   █▀  ▀ █   █  █▀ ▀█ 
- █      ▄▀▀▀█   █     █   █  █   █ 
- █      ▀▄▄▀█   █     ▀▄▄▀█  ▀█▄██ 
-                                 █ 
-                                 ▀ 
+▄▀█ █░░ █▀▀ ▄▀█ █▀█ █░█ █▀█   ▄▀█ █▀ █▀█ █
+█▀█ █▄▄ █▀░ █▀█ █▀▄ █▄█ ▀▀█   █▀█ ▄█ █▀▄ █
                   `}
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent animate-pulse -z-10" />
@@ -59,7 +53,7 @@ function HomeWelcome() {
               <h1 className="text-base sm:text-lg lg:text-xl text-muted-foreground">
                 <span className="animate-pulse text-primary">&gt; </span>
                 <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-                  Web Developer & Teacher (SMAN MODAL BANGSA)
+                  Web Developer & Teacher
                 </span>
               </h1>
 

@@ -11,7 +11,13 @@ export interface MicroCMSProject {
     url: string;
     height: number;
     width: number;
-  };
+  } | null;
+  // New optional additional images gallery
+  images?: {
+    url: string;
+    width: number;
+    height: number;
+  }[];
   title: string;
   description: string;
   project_url: string;
