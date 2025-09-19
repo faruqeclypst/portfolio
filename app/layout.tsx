@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: `${siteConfig.url}/opengraph-image.webp`,
+        url: `${siteConfig.url}/opengraph-image.png`,
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/opengraph-image.webp`],
+    images: [`${siteConfig.url}/opengraph-image.png`],
     creator: "@alfaruqasri",
   },
 
